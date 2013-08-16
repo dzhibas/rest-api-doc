@@ -1,0 +1,115 @@
+<%include file="header.html"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>RESTful API documentation</h1>
+            <p><small>generated on ${when}</small></p>
+
+            <%include file="about.html"/>
+
+        </div>
+    </div>
+    % for group in grouped_blocks:
+    <div class="row">
+        <div class="col-12">
+            <h3>${group.capitalize()}</h3>
+            %if group in modules.keys():
+                <p>${modules[group]}</p>
+            % endif
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th width="35%">Resource</th>
+                        <th width="65%">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    % for b in grouped_blocks[group]:
+                    <tr class="${b.is_danger()}">
+                        <td><span class="label label-info label-${b.method.lower()}">${b.method.upper()}</span></td>
+                        <td><a href="#${b.uniq()}">${b.route|h}</a></td>
+                        <td>${b.description|h}</td>
+                    </tr>
+                    % endfor
+                </tbody>
+            </table>
+        </div>
+    </div>
+    % endfor
+
+
+    % for group in grouped_blocks:
+    <div class="row">
+        <div class="col-12">
+            <h2>${group.capitalize()}</h2>
+            %if group in modules.keys():
+                <p>${modules[group]}</p>
+            % endif
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            % for b in grouped_blocks[group]:
+            <a id="${b.uniq()}"></a>
+            <h3><span class="label label-info label-${b.method.lower()}">${b.method.upper()}</span> ${b.route|h}</h3>
+
+            %if not b.working or b.deprecated:
+                <div class="bs-callout bs-callout-danger">
+                  <h4>Warning: service is not working or deprecated</h4>
+                  <p>${b.non_working}</p>
+                </div>
+            %endif
+            
+            <p>${b.description|n}</p>
+            
+            %if len(b.params) > 0:
+            <h4>Parameters</h4>
+            <table class="table">
+                %for param in b.params:
+                <tr>
+                    <td>${param.paramtype.upper()}</td>
+                    <td>
+                        <strong>${param.name}</strong><br/>
+                        %if param.required:
+                            <span class="text-success">required</span>
+                        %else:
+                            <span class="text-muted">optional</span>
+                        %endif
+                    </td>
+                    <td>${param.type}</td>
+                    <td>${param.rest}</td>
+                </tr>
+                %endfor
+            </table>
+            %endif
+
+            <h4>Returns</h4>
+            <p>${b.returns}</p>
+
+
+            %if len(b.examples) > 0:
+            <h4>Examples</h4>
+            %for e in b.examples:
+                <b>${e.type}</b>
+<pre>
+${e.getcode()|trim}
+</pre>
+            %endfor
+            %endif
+
+
+            % endfor
+        </div>
+    </div>
+    % endfor
+
+</div>
+
+<%include file="footer.html"/>
