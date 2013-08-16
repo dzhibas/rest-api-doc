@@ -48,7 +48,7 @@ pip install -r requirements.txt
 
 Usage
 ==
-python parse.py
+$ python parse.py -c
 
 Help
 ==
