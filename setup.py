@@ -44,9 +44,9 @@ setup(
     platforms='any',
     classifiers = [
         'Programming Language :: Python',
-        'Development Status :: 1 - Alpha',
+        'Development Status :: 3 - Alpha',
         'Natural Language :: English',
-        'Environment :: Web Environment',
+	'Environment :: Console',
         'Operating System :: OS Independent',
         'Topic :: Utilities',
         ]
