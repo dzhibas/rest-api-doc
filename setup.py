@@ -33,9 +33,9 @@ setup(
     long_description=long_description,
     include_package_data=True,
     package_data = {
-        '': ['templates/*', 'utils/*'],
+        'restapidoc': ['templates/*', 'README.md'],
     },
-    packages=['restapidoc', 'restapidoc.utils'],
+    packages=find_packages(exclude=['test_src_folder', 'test_src_folder.*']),
     entry_points={
         'console_scripts': [
             'restapidoc = restapidoc.utils.runner:main',
@@ -46,7 +46,7 @@ setup(
         'Programming Language :: Python',
         'Development Status :: 3 - Alpha',
         'Natural Language :: English',
-	'Environment :: Console',
+        'Environment :: Console',
         'Operating System :: OS Independent',
         'Topic :: Utilities',
         ]
