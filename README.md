@@ -1,9 +1,9 @@
 RESTful api documentation generation script
 ===================
 
-script to generate restful api documentation out of annotated php code. [Output example you can find here](http://htmlpreview.github.io/?https://raw.github.com/dzhibas/rest-api-doc/master/documentation.html)
+script to build restful api documentation out of annotated PHP (for now) code. [Output example you can find here](http://htmlpreview.github.io/?https://raw.github.com/dzhibas/rest-api-doc/master/documentation.html)
 
-annotation example
+annotation example:
 
     /**
      * @route /v1/modulename/authentication
@@ -44,15 +44,15 @@ annotation example
 
 Installation
 ==
-pip install -r requirements.txt
+pip install restapidoc
 
 Usage
 ==
-$ python parse.py -c
+$ restapidoc --help
 
 Help
 ==
-    usage: parse.py [-h] [-c] [-d DIR] [--filter FILTER] [-o OUTPUT]
+    usage: restapidoc [-h] [-c] [-d DIR] [--filter FILTER] [-o OUTPUT]
 
     optional arguments:
       -h, --help            show this help message and exit
@@ -63,5 +63,3 @@ Help
                             *Controler*.php
       -o OUTPUT, --output OUTPUT
                             output filename. default: documentation.html
-
-open generated documentation.html
