@@ -1,4 +1,4 @@
-RESTful api documentation generation script
+RESTful api documentation build tool
 ===================
 
 script to build restful api documentation out of annotated PHP (for now) code. [Output example you can find here](http://htmlpreview.github.io/?https://raw.github.com/dzhibas/rest-api-doc/master/documentation.html)
